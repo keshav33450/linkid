@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { validatePlatformUrl, isKnownPlatform } from "@/lib/platforms";
+import { validatePlatformUrl, isKnownPlatform, detectPlatform } from "@/lib/platforms";
 import { PLATFORMS } from "@/lib/constants";
 
 // --- isKnownPlatform ---
@@ -153,3 +153,13 @@ test("validatePlatformUrl rejects invalid YouTube URLs", () => {
     assert.equal(validatePlatformUrl(PLATFORMS.YOUTUBE, "https://youtube.com/@"), false);
 });
 
+
+test("validatePlatformUrl accepts Stack Overflow profile URLs", () => {
+    assert.equal(validatePlatformUrl(PLATFORMS.STACKOVERFLOW, "https://stackoverflow.com/users/123456/jane"), true);
+    assert.equal(validatePlatformUrl(PLATFORMS.STACKOVERFLOW, "stackoverflow.com/users/123456"), true);
+    assert.equal(validatePlatformUrl(PLATFORMS.STACKOVERFLOW, "https://stackoverflow.com/questions/1"), false);
+});
+
+test("detectPlatform identifies Stack Overflow URLs", () => {
+    assert.equal(detectPlatform("https://stackoverflow.com/users/123456/jane"), "stackoverflow");
+});

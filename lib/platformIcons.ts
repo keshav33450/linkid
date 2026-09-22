@@ -18,12 +18,14 @@ import {
     SiCodeforces,
     SiKaggle,
     SiGeeksforgeeks,
+    SiStackoverflow,
 } from "react-icons/si";
 
 import type { ComponentType, SVGProps } from "react";
 
 export const PLATFORMS = {
     github: { icon: Github, name: "GitHub" },
+    stackoverflow: { icon: SiStackoverflow, name: "Stack Overflow" },
     linkedin: { icon: Linkedin, name: "LinkedIn" },
     leetcode: { icon: Code2, name: "LeetCode" },
     website: { icon: Globe, name: "Website" },
