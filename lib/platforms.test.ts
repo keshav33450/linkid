@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { validatePlatformUrl, isKnownPlatform } from "@/lib/platforms";
+import { validatePlatformUrl, isKnownPlatform, detectPlatform } from "@/lib/platforms";
 import { PLATFORMS } from "@/lib/constants";
 
 // --- isKnownPlatform ---
@@ -153,3 +153,14 @@ test("validatePlatformUrl rejects invalid YouTube URLs", () => {
     assert.equal(validatePlatformUrl(PLATFORMS.YOUTUBE, "https://youtube.com/@"), false);
 });
 
+
+
+test("validatePlatformUrl accepts Substack profile URLs", () => {
+    assert.equal(validatePlatformUrl(PLATFORMS.SUBSTACK, "https://author.substack.com"), true);
+    assert.equal(validatePlatformUrl(PLATFORMS.SUBSTACK, "https://substack.com/@author"), true);
+    assert.equal(validatePlatformUrl(PLATFORMS.SUBSTACK, "https://github.com/author"), false);
+});
+
+test("detectPlatform identifies Substack URLs", () => {
+    assert.equal(detectPlatform("https://author.substack.com"), "substack");
+});
