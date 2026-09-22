@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { validatePlatformUrl, isKnownPlatform } from "@/lib/platforms";
+import { validatePlatformUrl, isKnownPlatform, detectPlatform } from "@/lib/platforms";
 import { PLATFORMS } from "@/lib/constants";
 
 // --- isKnownPlatform ---
@@ -153,3 +153,13 @@ test("validatePlatformUrl rejects invalid YouTube URLs", () => {
     assert.equal(validatePlatformUrl(PLATFORMS.YOUTUBE, "https://youtube.com/@"), false);
 });
 
+
+
+test("validatePlatformUrl accepts Behance profile URLs", () => {
+    assert.equal(validatePlatformUrl(PLATFORMS.BEHANCE, "https://behance.net/username"), true);
+    assert.equal(validatePlatformUrl(PLATFORMS.BEHANCE, "https://github.com/username"), false);
+});
+
+test("detectPlatform identifies Behance URLs", () => {
+    assert.equal(detectPlatform("https://behance.net/username"), "behance");
+});
