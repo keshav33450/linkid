@@ -162,4 +162,12 @@ test("validatePlatformUrl accepts Stack Overflow profile URLs", () => {
 
 test("detectPlatform identifies Stack Overflow URLs", () => {
     assert.equal(detectPlatform("https://stackoverflow.com/users/123456/jane"), "stackoverflow");
+test("validatePlatformUrl accepts GitLab profile URLs", () => {
+    assert.equal(validatePlatformUrl(PLATFORMS.GITLAB, "https://gitlab.com/username"), true);
+    assert.equal(validatePlatformUrl(PLATFORMS.GITLAB, "gitlab.com/username"), true);
+    assert.equal(validatePlatformUrl(PLATFORMS.GITLAB, "https://github.com/username"), false);
+});
+
+test("detectPlatform identifies GitLab URLs", () => {
+    assert.equal(detectPlatform("https://gitlab.com/username"), "gitlab");
 });
