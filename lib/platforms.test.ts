@@ -163,4 +163,27 @@ test("validatePlatformUrl accepts Substack profile URLs", () => {
 
 test("detectPlatform identifies Substack URLs", () => {
     assert.equal(detectPlatform("https://author.substack.com"), "substack");
+test("validatePlatformUrl accepts Behance profile URLs", () => {
+    assert.equal(validatePlatformUrl(PLATFORMS.BEHANCE, "https://behance.net/username"), true);
+    assert.equal(validatePlatformUrl(PLATFORMS.BEHANCE, "https://github.com/username"), false);
+});
+
+test("detectPlatform identifies Behance URLs", () => {
+    assert.equal(detectPlatform("https://behance.net/username"), "behance");
+test("validatePlatformUrl accepts Stack Overflow profile URLs", () => {
+    assert.equal(validatePlatformUrl(PLATFORMS.STACKOVERFLOW, "https://stackoverflow.com/users/123456/jane"), true);
+    assert.equal(validatePlatformUrl(PLATFORMS.STACKOVERFLOW, "stackoverflow.com/users/123456"), true);
+    assert.equal(validatePlatformUrl(PLATFORMS.STACKOVERFLOW, "https://stackoverflow.com/questions/1"), false);
+});
+
+test("detectPlatform identifies Stack Overflow URLs", () => {
+    assert.equal(detectPlatform("https://stackoverflow.com/users/123456/jane"), "stackoverflow");
+test("validatePlatformUrl accepts GitLab profile URLs", () => {
+    assert.equal(validatePlatformUrl(PLATFORMS.GITLAB, "https://gitlab.com/username"), true);
+    assert.equal(validatePlatformUrl(PLATFORMS.GITLAB, "gitlab.com/username"), true);
+    assert.equal(validatePlatformUrl(PLATFORMS.GITLAB, "https://github.com/username"), false);
+});
+
+test("detectPlatform identifies GitLab URLs", () => {
+    assert.equal(detectPlatform("https://gitlab.com/username"), "gitlab");
 });

@@ -1,6 +1,9 @@
 export const PLATFORMS = {
     GITHUB: "github",
     SUBSTACK: "substack",
+    BEHANCE: "behance",
+    STACKOVERFLOW: "stackoverflow",
+    GITLAB: "gitlab",
     LINKEDIN: "linkedin",
     TWITTER: "twitter",
     INSTAGRAM: "instagram",
